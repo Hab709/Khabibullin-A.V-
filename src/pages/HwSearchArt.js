@@ -6,7 +6,7 @@ this.profile = page.getByRole('link', { name: ' Profile' });
     }
 
   async mypclick (page) {
-    await this.gomyprof.click();
+    await this.gomyprof.first().click();
     await this.profile.click();
   }
   

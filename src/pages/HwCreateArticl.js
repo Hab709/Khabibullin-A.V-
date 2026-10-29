@@ -6,11 +6,13 @@ this.whats = page.getByPlaceholder("What's this article about?");
 this.wrightartic = page.getByPlaceholder("Write your article (in markdown)");
 this.tagsart = page.getByPlaceholder("Enter tags");
 this.publish = page.getByRole('button', {name: 'Publish Article'});
+this.goToNewArticl = page.getByRole('link', { name: 'New Article' });
 
 
 }
 
   async creatart (page) {
+    await this.goToNewArticl.click();
     await this.arttitle.fill('Azat Article');
     await this.whats.fill('New Azat test');
     await this.wrightartic.fill('New Azat test');
