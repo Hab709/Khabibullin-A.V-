@@ -4,7 +4,7 @@ import { YourFeedPage } from '../src/pages/yourfeed.page';
 import {Create} from '../src/pages/HwCreateArticl';
 import {CheckCreateNA} from '../src/pages/HwExpCreateNeArt';
 import {Search} from '../src/pages/HwSearchArt';
-import {DeleteArt} from '../src/pages/HwDeleteMyArt';
+import {ActionArt} from '../src/pages/HwActionWithArt';
 import {Add} from '../src/pages/HwAddFavorite';
 import {ExpAddFav} from '../src/pages/HwExpectAddFavorite';
 
@@ -30,7 +30,7 @@ test.afterEach(async ({ page }) => {
 
     
     const searchmyart = new Search (page);
-    const deletemyart = new DeleteArt (page);
+    const deletemyart = new ActionArt (page);
 
     await searchmyart.mypclick(); 
     await deletemyart.del();      

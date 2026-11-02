@@ -4,11 +4,8 @@ import { YourFeedPage } from '../src/pages/yourfeed.page';
 import {Create} from '../src/pages/HwCreateArticl';
 import {CheckCreateNA} from '../src/pages/HwExpCreateNeArt';
 import {Search} from '../src/pages/HwSearchArt';
-import {DeleteArt} from '../src/pages/HwDeleteMyArt';
-import {AddComment} from '../src/pages/HwAddComment';
-import {CheckAddCom} from '../src/pages/HwExpectAddComment';
-import {DellComm} from '../src/pages/HwDeleteComm';
-import {CheckDelCom} from '../src/pages/HwExpectDeleteComm';
+import { ActionArt } from '../src/pages/HwActionWithArt';
+
     
 test.describe('Объединил предусловие + тест  Удаление  комментария + постусловие', () => {
 
@@ -19,15 +16,15 @@ test.describe('Объединил предусловие + тест  Удале�
     const yourfeed = new YourFeedPage (page);
     const createart = new Create (page);
     const checkart = new CheckCreateNA (page);
-    const addcom = new AddComment (page);
-    const expaddnewcom = new CheckAddCom (page);
+    const comment = new ActionArt (page);
+    
 
     await loginPage.open();
     await expect(yourfeed.getProfileName()).toContainText('Aza@mail.ru');
     await createart.creatart();
     await expect(checkart.checkcrnewart()).toContainText('Azat Article');
-    await addcom.addnewcom();
-    await expect(expaddnewcom.checkaddnewcom()).toContainText('Мой комментарий');     
+    await comment.addnewcom();
+    await expect(comment.checkaddnewcom()).toContainText('Мой комментарий');     
   });
 
       //Постусловие удаление статьи после теста 
@@ -35,7 +32,7 @@ test.afterEach(async ({ page }) => {
 
     
     const searchmyart = new Search (page);
-    const deletemyart = new DeleteArt (page);
+    const deletemyart = new ActionArt (page);
 
     await searchmyart.mypclick(); 
     await deletemyart.del();      
@@ -43,11 +40,11 @@ test.afterEach(async ({ page }) => {
 
 test('Удаление  комментария', async ({ page }) => {
 
-const deletcom = new DellComm (page);
-const expdelcom = new CheckDelCom (page);
 
-await deletcom.delletecom();
-await expect(expdelcom.checkdelcom()).not.toBeVisible();
+    const dellcomm = new ActionArt (page);
+  
+await dellcomm.delletecom();
+await expect(dellcomm.checkdelcom()).not.toBeVisible();
 });
 
 });

@@ -4,9 +4,10 @@ import { YourFeedPage } from '../src/pages/yourfeed.page';
 import {Create} from '../src/pages/HwCreateArticl';
 import {CheckCreateNA} from '../src/pages/HwExpCreateNeArt';
 import {Search} from '../src/pages/HwSearchArt';
-import {DeleteArt} from '../src/pages/HwDeleteMyArt';
-import {AddComment} from '../src/pages/HwAddComment';
-import {CheckAddCom} from '../src/pages/HwExpectAddComment';
+import { ActionArt } from '../src/pages/HwActionWithArt';
+//import {DeleteArt} from '../src/pages/HwDeleteMyArt';
+//import {AddComment} from '../src/pages/HwAddComment';
+//import {CheckAddCom} from '../src/pages/HwExpectAddComment';
 
     
 test.describe('Объединил предусловие + тест  Добавление комментария + постусловие', () => {
@@ -30,7 +31,7 @@ test.afterEach(async ({ page }) => {
 
     
     const searchmyart = new Search (page);
-    const deletemyart = new DeleteArt (page);
+    const deletemyart = new ActionArt (page);
 
     await searchmyart.mypclick(); 
     await deletemyart.del();      
@@ -38,11 +39,11 @@ test.afterEach(async ({ page }) => {
 
 test('Добавление комментария', async ({ page }) => {
 
-const addcom = new AddComment (page);
-const expaddnewcom = new CheckAddCom (page);
+const addcom = new ActionArt (page);
+//const expaddnewcom = new CheckAddCom (page);
 
 await addcom.addnewcom();
-await expect(expaddnewcom.checkaddnewcom()).toContainText('Мой комментарий');
+await expect(addcom.checkaddnewcom()).toContainText('Мой комментарий');
 });
 
 });

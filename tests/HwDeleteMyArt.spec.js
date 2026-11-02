@@ -2,15 +2,12 @@ import { test, expect } from '@playwright/test';
 import {Login} from '../src/pages/HwLogIn.page';
 import { YourFeedPage } from '../src/pages/yourfeed.page';
 import {Search} from '../src/pages/HwSearchArt';
-import {DeleteArt} from '../src/pages/HwDeleteMyArt';
+import { ActionArt } from '../src/pages/HwActionWithArt';
 import {Create} from '../src/pages/HwCreateArticl';
 import {CheckCreateNA} from '../src/pages/HwExpCreateNeArt';
-import {ExpDel} from '../src/pages/HwExpectDeleteArt';
-
 
 
 // Предусловие с созданием статьи
-
 test.beforeEach(async ({ page }) => {
     const loginPage = new Login (page);
     const yourfeed = new YourFeedPage (page);
@@ -31,11 +28,10 @@ test('Удаление ранее созданной статьи', async ({ pag
 
 
 const searchmyart = new Search (page);
-const deletemyart = new DeleteArt (page);
-const expectdel = new ExpDel (page);
+const actionWArt = new ActionArt (page);
 
 await searchmyart.mypclick();
-await deletemyart.del();
-await expect(expectdel.checkdell()).toHaveText('Articles not available.');
+await actionWArt.del();
+await expect(actionWArt.checkdell()).toHaveText('Articles not available.');
 
 });
