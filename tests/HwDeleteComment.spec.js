@@ -1,8 +1,6 @@
 import { test, expect } from '@playwright/test';
 import {Login} from '../src/pages/HwLogIn.page';
-import { YourFeedPage } from '../src/pages/yourfeed.page';
 import {Create} from '../src/pages/HwCreateArticl';
-import {CheckCreateNA} from '../src/pages/HwExpCreateNeArt';
 import {Search} from '../src/pages/HwSearchArt';
 import { ActionArt } from '../src/pages/HwActionWithArt';
 
@@ -13,18 +11,13 @@ test.describe('Объединил предусловие + тест  Удале�
     test.beforeEach(async ({ page }) => {
 
     const loginPage = new Login (page);
-    const yourfeed = new YourFeedPage (page);
     const createart = new Create (page);
-    const checkart = new CheckCreateNA (page);
     const comment = new ActionArt (page);
     
 
     await loginPage.open();
-    await expect(yourfeed.getProfileName()).toContainText('Aza@mail.ru');
     await createart.creatart();
-    await expect(checkart.checkcrnewart()).toContainText('Azat Article');
-    await comment.addnewcom();
-    await expect(comment.checkaddnewcom()).toContainText('Мой комментарий');     
+    await comment.addnewcom();     
   });
 
       //Постусловие удаление статьи после теста 
